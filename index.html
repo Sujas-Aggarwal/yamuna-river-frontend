@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yamuna River Water Level in Delhi Region</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      #map {
+        height: 500px;
+        width: 100%;
+        overflow: hidden;
+      }
+      .container {
+        max-width: 960px;
+        margin: 40px auto;
+      }
+      .input-group {
+        margin: 10px 0;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        background: #f5f5f5;
+        border: 1px solid #9e9e9e;
+        outline: none;
+        padding: 10px;
+        max-width: 400px;
+      }
+      .input-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        background: #f5f5f5;
+        border: 1px solid #9e9e9e;
+        outline: none;
+        padding: 10px;
+        max-width: 400px;
+        min-height: 110px;
+      }
+      button {
+        padding: 12px 30px;
+        background-color: #3a3a3a;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #222222;
+      }
+      .container-header {
+        display: flex;
+        width: 100%;
+        gap: 80px;
+      }
+      @media screen and (max-width: 800px) {
+        .container-header {
+          flex-direction: column;
+        }
+      }
+      #map-container {
+        width: 400px;
+        max-width: 400px;
+      }
+      .bottom-container {
+        border: 2px solid rgb(219, 219, 219);
+        border-radius: 10px;
+        padding: 15px 30px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-header">
+        <div>
+          <h1>Yamuna River Water Level in Delhi Region</h1>
+          <p style="font-size: 15px; margin-top: 20px;">
+            Predictions of flooding can be beneficial for managing risks and
+            responding to disasters, especially during certain times of the
+            year. A successful model for predicting the Yamuna River would give
+            the right people in charge up-to-date information to help them make
+            decisions like when to tell individuals to leave, when to use their
+            resources, and when to protect their assets. Not only does flood
+            prediction help lower risks right away, but it also makes us more
+            resilient in the long term to climate change, which is making rain
+            patterns less predictable. Better guesses will be made about the
+            Yamuna basin with the help of the models done for this project. This
+            will help the area be better prepared for flooding.
+          </p>
+          <div>
+            <h1 style="margin-top: 50px">Predict Water Level</h1>
+            <div class="input-group">
+              <label for="lat1">Select Date</label>
+              <input type="number" id="lat1" step="0.000001" value="28.6139" />
+            </div>
+            <div class="input-group">
+              <label for="lng1">Select Station</label>
+              <input type="number" id="lng1" step="0.000001" value="77.2090" />
+            </div>
+            <div class="input-group">
+              <label for="lat2">Precipitation (in mm)</label>
+              <input type="number" id="lat2" step="0.000001" value="28.6139" />
+            </div>
+          </div>
+        </div>
+        <div id="map-container">
+          <div id="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7009.515026149455!2d77.1923040285201!3d28.547007410740473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1df6b9055fb5%3A0x81c10b266b1ea3c0!2sIndian%20Institute%20Of%20Technology%20Delhi%20(IIT%20Delhi)!5e0!3m2!1sen!2sin!4v1740918166785!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <!-- <h2>Define Highlighted Area</h2> -->
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+          "
+        >
+          <div style="width: 100%; max-width: 500px">
+            <div class="input-group">
+              <label for="lng2">Predicted Water Level (in m):</label>
+              <input type="number" id="lng2" step="0.000001" value="77.2190" />
+            </div>
+            <div class="input-group">
+              <label for="lat3">Site Elevation (in m):</label>
+              <input type="number" id="lat3" step="0.000001" value="28.6039" />
+            </div>
+          </div>
+          <div
+            style="
+              width: 100%;
+              max-width: 500px;
+              display: flex;
+              justify-content: stretch;
+              align-items: stretch;
+            "
+          >
+            <div class="input-group" style="width: 100%">
+              <label for="lng3">Remarks:</label>
+              <textarea id="lng3" step="0.000001" value="77.2190"></textarea>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 20px;
+          "
+        >
+          <div style="width: 100%" class="input-group">
+            <label for="lat4">Average Water Level (in m):</label>
+            <input type="number" id="lat4" step="0.000001" value="28.6039" />
+          </div>
+          <div style="width: 100%" class="input-group">
+            <label for="lng4">Warning Level (in m):</label>
+            <input type="number" id="lng4" step="0.000001" value="77.2090" />
+          </div>
+          <div style="width: 100%" class="input-group">
+            <label for="lng4">Danger Level (in m):</label>
+            <input type="number" id="lng4" step="0.000001" value="77.2090" />
+          </div>
+        </div>
+      </div>
+      <button
+        style="
+          margin-top: 20px;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+          border-radius: 5px;
+        "
+        onclick="drawPolygon()"
+      >
+        Execute
+      </button>
+    </div>
+    <a
+      href="https://github.com/Sujas-Aggarwal"
+      style="
+        all: unset;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid rgb(190, 190, 190);
+        text-align: center;
+      "
+    >
+      Made with ❤️
+    </a>
+
+    <!-- For development, you can use the API without a key briefly, but for production or heavy use, replace 'YOUR_API_KEY' with a valid Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=myMap"></script>
+    <script>
+      let map;
+      let polygon = null;
+
+      function myMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 28.6139, lng: 77.209 }, // Center on Delhi
+          zoom: 12,
+        });
+      }
+
+      function drawPolygon() {
+        // Clear previous polygon if it exists
+        if (polygon) {
+          polygon.setMap(null);
+        }
+
+        // Get user input coordinates
+        const lat1 = parseFloat(document.getElementById("lat1").value);
+        const lng1 = parseFloat(document.getElementById("lng1").value);
+        const lat2 = parseFloat(document.getElementById("lat2").value);
+        const lng2 = parseFloat(document.getElementById("lng2").value);
+        const lat3 = parseFloat(document.getElementById("lat3").value);
+        const lng3 = parseFloat(document.getElementById("lng3").value);
+        const lat4 = parseFloat(document.getElementById("lat4").value);
+        const lng4 = parseFloat(document.getElementById("lng4").value);
+
+        // Check if all inputs are valid numbers
+        if (
+          isNaN(lat1) ||
+          isNaN(lng1) ||
+          isNaN(lat2) ||
+          isNaN(lng2) ||
+          isNaN(lat3) ||
+          isNaN(lng3) ||
+          isNaN(lat4) ||
+          isNaN(lng4)
+        ) {
+          alert("Please enter valid latitude and longitude values.");
+          return;
+        }
+
+        // Define the polygon coordinates
+        const coordinates = [
+          { lat: lat1, lng: lng1 },
+          { lat: lat2, lng: lng2 },
+          { lat: lat3, lng: lng3 },
+          { lat: lat4, lng: lng4 },
+        ];
+
+        // Create and draw the polygon
+        polygon = new google.maps.Polygon({
+          paths: coordinates,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+        });
+
+        polygon.setMap(map);
+
+        // Adjust map to fit the polygon
+        const bounds = new google.maps.LatLngBounds();
+        coordinates.forEach((coord) => bounds.extend(coord));
+        map.fitBounds(bounds);
+      }
+
+      // Error handling for API loading
+      window.onerror = function (message, source, lineno, colno, error) {
+        console.log("Error: " + message + " at line " + lineno);
+        if (message.includes("Google Maps API")) {
+          alert(
+            "The Google Maps API failed to load. For development, you can try without a key, but for production, please obtain an API key from Google Cloud Console (https://cloud.google.com/maps-platform/)."
+          );
+        }
+      };
+    </script>
+  </body>
+</html>
